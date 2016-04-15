@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link href="css/collapse.css" rel="stylesheet" type="text/css" />
+		<title>焦点轮播图</title>
+	</head>
+	<body>
+		<div class="container" id="container" >
+			<div class="img-list" id="imgList" style="left:-450px;">
+				<img src="img/5.jpg" /><!-- 为了实现无限滚动 -->
+				<img src="img/1.jpg" />
+				<img src="img/2.jpg" />
+				<img src="img/3.jpg" />
+				<img src="img/4.jpg" />
+				<img src="img/5.jpg" />
+				<img src="img/1.jpg" /><!-- 为了实现无限滚动 -->
+			</div>
+			
+			<div class="buttons" id="buttons">
+				<span index="1" class="buttonOn"></span>
+			    <span index="2"></span>
+			    <span index="3"></span>
+			    <span index="4"></span>
+			    <span index="5"></span>
+			</div>
+			
+			<div class="arrow-wrap">
+				<div class="arrow">
+					<a id="prev" href="javascript:;">&lt;</a>
+					<a id="next" href="javascript:;">&gt;</a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/collapse.js"></script>
+	</body>
+</html>
