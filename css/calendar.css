@@ -212,6 +212,10 @@ padding:10px 0px;}
 body{margin:20px 0px;}
 .date-details,.go-today,.time-now{display:none;}
 .cal-date{margin-right:0px;}
-.cal-body{padding: 10px 2px;
+.cal-body{padding: 10px 2px;}
+div[id^="lunD"] {
+font-size: 12px;
+
+}
 }
 
