@@ -60,6 +60,8 @@ border-radius:10px;
 -webkit-margin-start: 0px;
 -webkit-margin-end: 0px;
 margin-bottom: 5px;
+/*IE兼容*/
+margin-top:0px;
 }
 .cal-header p:first-child{color:#fff;
 font-family: \5FAE\8F6F\96C5\9ED1;
@@ -77,14 +79,20 @@ display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
 display: -ms-flexbox;      /* TWEENER - IE 10 */
 display: -webkit-flex;     /* NEW - Chrome */
 display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+display: box;  
+display: flexbox;  
 
 flex-wrap:wrap;
 justify-content: space-around;
 
 }
 
-.choose-year, .holiday-schedule, .go-today{width:90px;margin-right:8px;}
-.time-now{width:130px;font-size: 13px;line-height: 25px;color:#fff;}
+.choose-year, .holiday-schedule, .go-today{
+/*display: table-cell;*/ /*IE9*/
+width:90px;margin-right:8px;}
+
+.time-now{display: table-cell; /*IE9*/
+width:130px;font-size: 13px;line-height: 25px;color:#fff;}
 .choose-date select, .choose-date input{width:100%;
 padding:3px 5px;
 color: #555;
@@ -131,7 +139,9 @@ display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
- 
+  display: box;  
+  display: flexbox;
+
 flex-wrap:wrap;
 }
 
@@ -139,6 +149,7 @@ flex-wrap:wrap;
 	border:1px solid rgba(236, 205, 174, 0.39);
 box-sizing:border-box;
 margin-right:5px;
+/*display:table-cell;*/
 }
 
 .date-details{flex:3;background: rgba(236, 205, 174, 0.39);
@@ -148,6 +159,7 @@ padding-top:10px;
 text-align: center;
 color:#575151;
 font-size: 15px;
+/*display:table-cell;*/
 }
 
 .cal-date thead tr{background:rgba(236, 205, 174, 0.39);}
