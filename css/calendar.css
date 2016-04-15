@@ -44,12 +44,7 @@ height:415px;
 border-radius:10px;
 }
 
-/*当屏幕宽度小于620px时，右边展示模块隐藏*/
-@media (max-width: 620px) {
-body{margin:20px 0px;}
-.date-details,.holiday-schedule,.time-now{display:none;}
 
-}
 
 /*万年历头部样式*/
 .cal-header{
@@ -203,3 +198,11 @@ padding:10px 0px;}
 .suit:first-letter,.avoid:first-letter{font-size: 20px;}
 
 .suit,.avoid{margin:5px 0px 5px 0px;}
+
+/*当屏幕宽度小于620px时，右边展示模块隐藏*/
+@media (max-width: 620px) {
+body{margin:20px 0px;}
+.date-details,.holiday-schedule,.time-now{display:none;}
+.cal-date{margin-right:0px;}
+
+}
