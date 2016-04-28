@@ -1,4 +1,23 @@
+/*小球可以斜着走*/
 var gameWrap = document.getElementById('gameWrap');
+var clientWidth = document.documentElement.clientWidth;
+
+if(clientWidth >= 600)
+{
+	gameWrap.width = 600;
+	gameWrap.height = 800;
+	
+}
+else
+{
+	gameWrap.width = clientWidth;
+	gameWrap.height = clientWidth*800/600;
+
+}
+var boxSize = gameWrap.width/15;
+
+
+console.log(clientWidth);
 var hero = {
 		speed: 100,		
 		x: 7,
@@ -11,8 +30,11 @@ var sDoc = {
 var openlist = [];
 var closelist = [];
 var father = [];
-var row = gameWrap.height/40;
-var col = gameWrap.width/40;	
+
+var row = gameWrap.height/boxSize;
+var col = gameWrap.width/boxSize;	
+console.log(row);
+console.log(col);
 var NopassBlock = [];
 
 if (gameWrap.getContext){
@@ -61,7 +83,7 @@ function heroSet(x,y){
 	ctxGame.fillStyle = "#90DF97";
 	ctxGame.beginPath();
     //ctxGame.moveTo(gameWrap.width,gameWrap.height);
-    ctxGame.arc(x*40+20,y*40+20,20,0,2*Math.PI);
+    ctxGame.arc(x*boxSize+boxSize/2,y*boxSize+boxSize/2,boxSize/2,0,2*Math.PI);
 	ctxGame.fill();
 }
 
@@ -69,16 +91,16 @@ function heroSet(x,y){
 function docSet(){
 	ctxGame.fillStyle = "#F4AE8A";
 	ctxGame.beginPath();
-	ctxGame.moveTo(sDoc.x*40+20,(sDoc.y+1)*40);
-	ctxGame.lineTo(sDoc.x*40,sDoc.y*40);
-	ctxGame.lineTo((sDoc.x+1)*40,sDoc.y*40);
+	ctxGame.moveTo(sDoc.x*boxSize+boxSize/2,(sDoc.y+1)*boxSize);
+	ctxGame.lineTo(sDoc.x*boxSize,sDoc.y*boxSize);
+	ctxGame.lineTo((sDoc.x+1)*boxSize,sDoc.y*boxSize);
 	ctxGame.fill();
 }
 
 /*游戏重置*/
 function resetGame(){
-	ctxGame.clearRect(0,0,600,800);
-	rectRandom(40);
+	ctxGame.clearRect(0,0,gameWrap.width,gameWrap.height);
+	rectRandom(boxSize);
 	heroSet(hero.x,hero.y);
 	docSet();
 }
@@ -206,7 +228,7 @@ function getF(arr,start,end){
 
 /*清除路径*/
 function clearPath(x,y){
-			ctxGame.clearRect(x*40,y*40,40,40);
+			ctxGame.clearRect(x*boxSize,y*boxSize,boxSize,boxSize);
 }
 
 
@@ -290,12 +312,12 @@ gameWrap.onclick = function(event){
 
         for(var i = 0;i<=15;i++)
         {
-        	arrayX.push(40*i);
+        	arrayX.push(boxSize*i);
         }
         
         for(var i = 0;i<=20;i++)
         {
-        	arrayY.push(40*i);
+        	arrayY.push(boxSize*i);
         }
 
         function find(array,val){
