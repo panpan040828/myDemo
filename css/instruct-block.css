@@ -1,0 +1,79 @@
+body{margin:0px;
+font-family: 黑体;
+}
+
+/*游戏网格*/
+.game{float:left;width:700px;}
+.game-table{width:499px;margin:20px auto;}
+.game-table table {border:1px solid #000;border-spacing:0px;position:relative;}
+.game-table table td{width:45px;
+					height:45px;
+					border:1px solid #DBDADA;
+					padding:0px;
+					margin:0px;
+					box-sizing:border-box;
+}
+.row-number span,.col-number span{width:45px;
+height:45px;
+text-align: center;
+line-height: 45px;
+}
+
+.row-number span{display:inline-block;margin-right: -8px;}
+.col-number span{display:block;}
+.col-number{float:left;margin-right:2px;}
+.row-number{margin-left:45px;}
+
+.rbBlock{position: relative;
+
+width:43px;
+}
+.blue-block{width:43px;
+height:10px;
+background: blue;
+}
+
+.red-block{width:43px;
+height:33px;
+background: red;
+}
+
+/*下面的inout框*/
+.game-input{margin:-40px auto 20px auto; 
+	width:400px;
+}
+.code-number{float:left;
+	width:45px;
+	height:187px;
+	background: #C0C0C0;
+	margin-top: 2px;
+	overflow-y: scroll;/*使div垂直方向上有滚动条*/
+}
+.code-number table tr td{width:25px;
+	height:21px;
+	text-align: center;
+	color:#fff;
+	border-radius: 15px;
+}
+.code-input{margin-top:10px;}
+#input{
+	width:375px;
+	background: #000;
+	border:2px solid #eee;
+	color:green;
+	font-size: 20px;
+	margin-left: -20px;
+}
+
+.game-input input{height:25px;
+width:60px;}
+
+/*game-rule*/
+.game-rule {
+margin-top: 15px;
+width: 600px;
+float: left;
+}
+.game-rule p{margin:5px 0px;}
+
+.greyBlock{background: #DBDADA;}
