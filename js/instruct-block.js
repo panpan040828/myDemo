@@ -152,6 +152,8 @@ function GO(direct,s,step){
 		}
 
 		function goRight(){
+			console.log(colorBlock.style.left);
+			//console.log(parseFloat(colorBlock.style.left));
 			if((left + s) > 454)
 			{
 					colorBlock.style.left = 454 + "px"; 					
@@ -208,11 +210,11 @@ function rotateTo(d,step){
 			
 			var preR = parseFloat(rotateObjR.substring(rotateObj.indexOf("(")+1,rotateObj.indexOf(")")));
 			console.log(rotateObjR);
-			console.log(preR);
+			//console.log(preR);
 			if( preR < d)
 			{								   
 				colorBlock.style.transform = "rotate(" + (preR +dt) + "deg)";
-				console.log(preR +dt);						
+				//console.log(preR +dt);						
 				setTimeout(rotateR,interval);//只会执行一次		
 			}
 		}
