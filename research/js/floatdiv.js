@@ -59,4 +59,6 @@ eventMonitor(btnCancel, "click", function() {
 	myFloatDiv.hide();
 });
 
-
+eventMonitor(myFloatLayer, "click", function() {
+	myFloatDiv.hide();
+});
