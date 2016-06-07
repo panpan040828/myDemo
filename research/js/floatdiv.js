@@ -42,10 +42,7 @@ FloatLayer.prototype = {
 	//定义一个方法，实现拖拽功能
 	dragDiv: function() {
 		var needParams = this.params;
-		//首先获取当前的Div的left，right值存放起来
-		needParams.left = getCss(this.ele,"left");
-		needParams.top = getCss(this.ele,"top");
-		//console.info(needParams.left);
+
 		var that = this;
 
 		eventMonitor(this.elehead, "mousedown", function(event) {
@@ -57,7 +54,9 @@ FloatLayer.prototype = {
 					return false;
 				}  
 			}
-			  			
+			//首先获取当前的Div的left，right值存放起来
+			needParams.left = getCss(that.ele, "left");
+		    needParams.top = getCss(that.ele, "top");  			
 			var e = event ? event: window.event;
 			needParams.flag = true;//鼠标按下，开始计算鼠标移动的路程
 			needParams.currentX = e.clientX;
