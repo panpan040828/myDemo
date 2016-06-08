@@ -9,8 +9,6 @@ var btnOpen = document.getElementById("btnDiv");
 var btnSure = document.getElementById("btnSure");
 var btnCancel = document.getElementById("btnCancel");
 
-var myFloatDiv = new FloatLayer(myFloatLayer,alertDiv,header,resizeRig,resizeBot);
-
 //绑定事件，兼容w3c和ie
 var eventMonitor = function (myDiv,type,fn) {
 	if(myDiv.addEventListener) {
@@ -120,9 +118,7 @@ var dynamic = function(bar,target,attr,par) {
 					eventMonitor(document, "mousemove", startDrag);	
 				}
 
-			});
-
-			
+			});		
 };
 
 //浮出层的构造函数
@@ -189,7 +185,7 @@ FloatLayer.prototype = {
 	}
 }
 
-
+var myFloatDiv = new FloatLayer(myFloatLayer,alertDiv,header,resizeRig,resizeBot);
 
 eventMonitor(btnOpen, "click", function() {
 	myFloatDiv.init();
