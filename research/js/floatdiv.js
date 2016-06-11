@@ -21,6 +21,7 @@ var eventMonitor = function (myDiv,type,fn) {
 	}
 }
 
+//解除事件绑定，兼容w3c和ie
 var eventDelete = function (myDiv,type,fn) {
 	if(myDiv.removeEventListener) {
 		myDiv.removeEventListener(type,fn);
@@ -28,6 +29,7 @@ var eventDelete = function (myDiv,type,fn) {
 		myDiv.detachEvent("on" + type, fn);
 	}
 }
+
 //获取某元素以浏览器左上角为原点的坐标
 var getPoint = function (obj) { 
 	var top = obj.offsetTop; //获取该元素对应父容器的上边距
@@ -46,7 +48,6 @@ var getPoint = function (obj) {
 //定义一个方法，实现当前获取计算后的DOM属性功能
 var	getCss = function(obj,key) {
 	var attrValue;
-	var reg = new RegExp("^[\w\W]*[%]+[\w\W]*$");
 
 	if(obj.currentStyle) {
 		if(obj.currentStyle[key].indexOf("%") !== -1) {//主要是为了兼容ie浏览器
@@ -70,32 +71,33 @@ var	getCss = function(obj,key) {
 	return attrValue;
 }
 
+//实现拖拽和放大缩小功能
 var dynamic = function(bar,target,attr,par) {
 			var startDrag = function(event) {
 				var e = event ? event: window.event;
 				if(par.flag) {
-							//鼠标在移动时，鼠标同时是处于按下的状态
-							var now = new Array(2), dis = new Array(2);
-							now[0] = e.clientX;
-							now[1] = e.clientY;
-							dis[0] = now[0] - par.currentX;
-							dis[1] = now[1] - par.currentY;
+					//鼠标在移动时，鼠标同时是处于按下的状态
+					var now = new Array(2), dis = new Array(2);
+					now[0] = e.clientX;
+					now[1] = e.clientY;
+					dis[0] = now[0] - par.currentX;
+					dis[1] = now[1] - par.currentY;
 
-							if(attr == "left" || attr == "width") {
-								target.style[attr] = parseInt(par[attr]) + dis[0] + "px";
-							}else {
-								target.style[attr] = parseInt(par[attr]) + dis[1] + "px";
-							}							
+					if(attr == "left" || attr == "width") {
+						target.style[attr] = parseInt(par[attr]) + dis[0] + "px";
+					}else {
+						target.style[attr] = parseInt(par[attr]) + dis[1] + "px";
+					}							
 				}
 			}
 
 			var stopDrag = function() {
-				par.flag = false;//鼠标按下，开始计算鼠标移动的路程
-				par[attr] = getCss(target, attr);
+				par.flag = false;//鼠标释放
+				par[attr] = getCss(target, attr);//获取此时的样式值
 				if(bar.releaseCapture) {
 					bar.onmousemove = null;
 					bar.onmouseup = null;
-					bar.releaseCapture
+					bar.releaseCapture();
 				}else {
 					eventDelete(document,"mousemove",startDrag);
 					eventDelete(document,"mouseup",stopDrag);
@@ -108,17 +110,17 @@ var dynamic = function(bar,target,attr,par) {
 				par[attr] = getCss(target, attr);
 			
 				var e = event ? event: window.event;
-				par.flag = true;//鼠标按下，开始计算鼠标移动的路程
+				par.flag = true;//鼠标按下，记录当前鼠标所在的位置
 				par.currentX = e.clientX;
 				par.currentY = e.clientY;
-
-				if(bar.setCapture) {
-					eventMonitor(bar, "mouseup", stopDrag);
-					eventMonitor(bar, "mousemove", startDrag);	
+				
+				if(bar.setCapture) {//ie中才有setCapture										
+					eventMonitor(bar, "mousemove", startDrag);
+					eventMonitor(bar, "mouseup", stopDrag);	
 					bar.setCapture();
-				}else {
-					eventMonitor(document, "mouseup", stopDrag);
+				}else {										
 					eventMonitor(document, "mousemove", startDrag);	
+					eventMonitor(document, "mouseup", stopDrag);
 				}
 
 			});			
