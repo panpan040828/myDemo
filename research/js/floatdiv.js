@@ -4,10 +4,13 @@ var myFloatLayer = alertDiv.parentNode;
 var header = document.getElementById("alertHeader");
 var resizeRig = document.getElementById("resizeRig");
 var resizeBot = document.getElementById("resizeBot");
+var resizeDiv = document.getElementById("resizeDiv");
 
 var btnOpen = document.getElementById("btnDiv");
 var btnSure = document.getElementById("btnSure");
 var btnCancel = document.getElementById("btnCancel");
+
+
 
 //绑定事件，兼容w3c和ie
 var eventMonitor = function (myDiv,type,fn) {
@@ -118,16 +121,17 @@ var dynamic = function(bar,target,attr,par) {
 					eventMonitor(document, "mousemove", startDrag);	
 				}
 
-			});		
+			});			
 };
 
 //浮出层的构造函数
-function FloatLayer(wrap, ele, elehead, rig, bot) {
+function FloatLayer(wrap, ele, elehead, rig, bot, div) {
 	this.ele = ele;
 	this.wrap = wrap;
 	this.elehead = elehead;
 	this.rig = rig;
 	this.bot = bot;
+	this.div = div;
 	this.params = {
 		left: 0,
 		top: 0,
@@ -145,6 +149,8 @@ FloatLayer.prototype = {
 	init: function() {
 		this.ele.style.left = "50%";
 		this.ele.style.right = "50%";
+		this.ele.style.width = "";
+		this.ele.style.height = "";
 	},
 
 	//弹出框出现
@@ -182,10 +188,12 @@ FloatLayer.prototype = {
 		var needParams = this.params;
 		dynamic(this.rig,this.ele,"width",needParams);
 		dynamic(this.bot,this.ele,"height",needParams);
+		dynamic(this.div,this.ele,"width",needParams);
+		dynamic(this.div,this.ele,"height",needParams);
 	}
 }
 
-var myFloatDiv = new FloatLayer(myFloatLayer,alertDiv,header,resizeRig,resizeBot);
+var myFloatDiv = new FloatLayer(myFloatLayer,alertDiv,header,resizeRig,resizeBot,resizeDiv);
 
 eventMonitor(btnOpen, "click", function() {
 	myFloatDiv.init();
