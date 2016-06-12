@@ -1,12 +1,10 @@
 var RankTable = function(config) {
 	
-		this.rowNum = config.r;
-		this.colNum = config.c;
-		this.th = config.th;
-		this.tb = config.tb;
-		this.std = config.s;
-		this.names = [];
-		this.curData = [];
+		this.rowNum = config.r;//表格行数
+		this.colNum = config.c;//表格列数
+		this.th = config.th;//表格头信息
+		this.tb = config.tb;//表格内容信息
+		this.std = config.s;//可进行排序的列号
 
 		this.init();
 }
@@ -63,7 +61,6 @@ RankTable.prototype = {
 			return sortBut;
 		}
 
-
 		for(var i = 0; i < this.th.length; i++) {
 			for(var j = 0; j < s.length; j++) {
 				if(s[j] == i) {
@@ -80,8 +77,6 @@ RankTable.prototype = {
 		console.log(data);
 		var tb = "";
 		for(var i = 0; i < data.length; i++) {
-			//var name = this.names[i];
-			//tb += "<tr>" + fn(name);
 			tb += data[i].map(fn).join("") + "</tr>";
 			console.log(tb);
 		}
