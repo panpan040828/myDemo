@@ -1,0 +1,114 @@
+body{background-color:rgb(247, 247, 247);
+	margin:0px;
+	font-family: 微软雅黑, 'Microsoft YaHei';
+}
+
+/*common*/
+.cor-white{color:white;}
+.bg-orange{background-color:rgba(213, 117, 109, 1);}
+.bg-grey{background-color:#BDBBBB;}
+.fl-left{float:left;}
+.fl-right{float:right;}
+.clr-both{clear:both;}
+.text-center{text-align: center;}
+.fs-20{font-size:20px;}
+.fs-18{font-size:16px;}
+
+.lihg-25{line-height:25px;}
+.mt-10{margin-top: 10px;}
+.mt-20{margin-top: 20px;}
+.mb-15{margin-bottom:15px;}
+/*nav*/
+.navbar{padding:20px 50px 20px 30px;}
+.navbar-link{height:20px;}
+.navbar ul{margin-top:0px;
+		   -webkit-margin-before: 0em;
+			-webkit-margin-after: 0em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+			-webkit-padding-start: 0px;
+		  }
+.navbar ul li{list-style-type: none;
+			  text-decoration: none;
+			  float:left;
+			 }			 
+.navbar ul li a{
+				text-decoration: none;
+				color:white;
+				display:block;
+				margin-left:20px;
+				line-height:20px;				
+				}
+/*leftContent*/
+.left-content{margin-right:450px;}
+.right-sidebar{float:right;width:380px;}
+
+/*article*/
+.text{text-indent: 2em; /*em是相对单位，2em即现在一个字大小的两倍*/
+	 }
+.article-back{padding:20px;
+				margin:20px;
+				background: #fff;
+				box-shadow: 5px 5px 5px #A09696;
+				border:1px solid #E2E2E2;
+			}	 		
+.text-ul{list-style-type: none;
+		}
+p img{width:100%;}
+
+/*picture*/
+.picture-back{border:2px solid #C8C8C8;				
+				padding:0px 20px 20px 20px;
+				text-align:center;
+				margin-top:20px;
+			}
+
+.img{width:200px;
+	height:150px;
+	line-height:150px;
+	text-align:center;
+}
+.picture-container{display:-webkit-box;
+					display:-moz-box;
+					display:-ms-flexbox;
+					display:-webkit-flex;
+					display:flex;
+					-webkit-flex-flow:row wrap;
+					justify-content:space-around;
+					}
+/*table*/
+.table-style{width:100%;}
+.table-style .tr1{text-align: left;}
+
+/*sidebar*/
+.sidebar-title{border-left: 2px solid #BDBBBB;
+				padding:10px 0px 10px 20px;
+				margin-top:0px;
+
+}
+ 
+.myform  div label{width:50%;text-align: right;float:left;margin-right:10px;}
+.myform div input{height:25px;}
+.warning-message{
+				text-align: left;
+				margin:10px 0px 20px 0px;
+				color:#BDBBBB;
+				font-size:13px;
+			}
+			
+#gender-choose label{float:none;vertical-align: 50%;}
+.choose-city {height:25px;}
+#hobby-choose label{float:none;vertical-align: 50%;margin-right:0px;}
+#self-introduction textarea{overflow:hidden;}
+#submit-button{width:100%;
+				height:40px;
+				font-size: 18px;
+				border-radius: 5px;
+				color:#fff;
+				border:0px solid;
+}
+
+/*footer*/
+footer{padding:20px 0px;
+		clear:both;
+}

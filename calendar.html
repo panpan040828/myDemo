@@ -4,20 +4,25 @@
 		<meta charset="utf-8" />
 		<meta name="author" content="yupan" />
 		<meta name="description" content="万年历" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link type="text/css" rel="stylesheet" href="css/calendar.css">
-		<title>万年历</title>
+		<!--[if IE 9.0]> 
+			<link type="text/css" rel="stylesheet" href="css/ie9-hack.css">
+		<![endif]-->
+		<title>万年历</title>		
 	</head>
 
 	<body>
 		<div class="container">
 			<div class="cal-wrap">
-				<form name="CLD">
+				<form name="CalDate">
 					<div class="cal-header">
 						<p>万年历</p>
 						<!--<p class="year-name">丙申年壬辰月己未日</p>-->
 						<div class="choose-date">
 							<div class="choose-year">
-								<select name="SY" onchange="changeCld();">
+								<select name="selectYear" onchange="changeCaldate();">
 									<script>
                   						for(i=1901;i<2050;i++) 
                   							{document.write('<option>'+i+"年"+'</option>');}
@@ -27,7 +32,7 @@
 							<div class="choose-month">
 								<a id="prev-month" href="javascript:;">&lt;</a>
 								<a id="next-month" href="javascript:;">&gt;</a>
-								<select name="SM" onchange="changeCld();">
+								<select name="selectMonth" onchange="changeCaldate();">
 									<script>
                   						for(i=1;i<=12;i++) 
                   							{document.write('<option>'+i+"月"+'</option>');}
@@ -39,8 +44,14 @@
 								<input id="back-to-today" type="submit" value="返回今天" />
 							</div>
 							<div class="holiday-schedule">
-								<select>
+								<select name="holidayPlan" onchange="checkHolidayPlan();">
 									<option>假日安排</option>
+									<script>
+										var holiday = ["元旦","春节","清明节","劳动节","端午节","中秋节","国庆节"];
+										
+                  						for(i=0;i<=6;i++) 
+                  							{document.write('<option>'+holiday[i]+'</option>');}
+              						</script>
 								</select> 
 							</div>
 							<div class="time-now" >
@@ -73,6 +84,7 @@
 								                document.write('<td id="box' + dayNum +'">'+
 								                	'<div class="calDateNum" id="calD' +dayNum+'"></div>'+
 								                	'<div class="lunarDate" id="lunD' +dayNum+ '"></div>'+
+								                	'<div id="hTran'+dayNum+'">假</div>'+
 								                	'</td>')
 								             }
 								             document.write('</tr>');

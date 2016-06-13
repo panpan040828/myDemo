@@ -1,0 +1,216 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task2-36</title>
+    <link type="text/css" rel="stylesheet" href="css/instruct-block.css" />
+  </head>
+<body>
+  <div class="container">
+    <div class="game">
+      <div class="game-table">
+        <div class="row-number">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+        </div>
+
+        <div class="col-number">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+        </div>
+        <table id="mapTable">
+          <tbody id="tableBody">          
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>        
+        </table>
+        <div class="rbBlock" id="corBlock" style="transform:rotate(0deg);bottom:45px;left:49px;">
+            <div class="blue-block">
+            </div>
+            <div class="red-block">
+            </div>
+        </div>
+      </div>
+      <div class="game-input">
+        <input id="submit" type="button"  value="执行" onclick="startGame()" />
+        <input id="refresh" type="button"  value="Refresh" />
+        <input id="random" type="button"  value="Random" />
+        <div class="code-input">
+          <div class="code-number">
+            <table >
+              <tbody id="numDiv">
+              </tbody>
+            </table>
+          </div>
+          <textarea id="input" rows="8" cols="20"></textarea> 
+        </div>
+      </div>
+    </div>
+
+    <div class="game-rule">
+      <h3>游戏规则：</h3>
+      <p>在输入框中允许输入如下指令，按下按钮后，使得正方形做相应动作，移动不能超出格子空间。</p>
+      <p>GO：向蓝色边所面向的方向前进一格（一格等同于正方形的边长</p>
+      <p>TUN LEF：向左转（逆时针旋转90度）</p>
+      <p>TUN RIG：向右转（顺时针旋转90度）</p>
+      <p>TUN BAC：向右转（旋转180度）</p>
+      <p>TRA LEF：向屏幕的左侧移动一格，方向不变</p>
+      <p>TRA TOP：向屏幕的上面移动一格，方向不变</p>
+      <p>TRA RIG：向屏幕的右侧移动一格，方向不变</p>
+      <p>TRA BOT：向屏幕的下面移动一格，方向不变</p>
+      <p>MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格</p>
+      <p>MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格</p>
+      <p>MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格</p>
+      <p>MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</p>
+      <p>GO i：向当前方向前进i格(i为正整数，i&lt10)</p>
+      <p>TRA LEF i：向屏幕的左侧移动一格，方向不变(i为正整数，i&lt10)</p>
+      <p>TRA TOP i：向屏幕的上面移动一格，方向不变(i为正整数，i&lt10)</p>
+      <p>TRA RIG i：向屏幕的右侧移动一格，方向不变(i为正整数，i&lt10)</p>
+      <p>TRA BOT i：向屏幕的下面移动一格，方向不变(i为正整数，i&lt10)</p>
+      <p>MOV LEF i：方向转向屏幕左侧，并向屏幕的左侧移动一格(i为正整数，i&lt10)</p>
+      <p>MOV TOP i：方向转向屏幕上面，向屏幕的上面移动一格(i为正整数，i&lt10)</p>
+      <p>MOV RIG i：方向转向屏幕右侧，向屏幕的右侧移动一格(i为正整数，i&lt10)</p>
+      <p>MOV BOT i：方向转向屏幕下面，向屏幕的下面移动一格(i为正整数，i&lt10)</p>
+      <p>BUILD：当前方块面对的方向前修建一格墙壁，如果被指定修墙的地方超过边界墙或者已经有墙了，则取消修墙操作，并调用浏览器的console.log方法打印一个错误日志</p>
+      <p>BRU color：当前方块蓝色边面对方向有紧相邻的墙，则将这个墙颜色改为参数颜色，如果没有，则通过调用浏览器的console.log方法，打印一个错误日志</p>
+      <p>MOV TO x,y：使得方块从当前位置移动到坐标为x，y的地方，移动过程中不能进入墙所在的地方</p>
+    </div>
+  </div>
+
+<script type="text/javascript" src="js/instruct-block.js"></script>
+</body>
+</html>

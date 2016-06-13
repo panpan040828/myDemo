@@ -10,9 +10,9 @@ var chineseEra = document.getElementById("chineseEra");
 var start ={Year:1900,
 			Mon:0,
 			Day:31,
-			GreatColdDay:6,
-			GreatColdHour:2,
-			GreatColdMin:5,} ;//万年历最早能查到的日期
+			SmallColdDay:6,
+			SmallColdHour:2,
+			SmallColdMin:5,} ;//万年历最早能查到的日期
 var end = {Year:2049};//万年历最早能查到的年份
 
 
@@ -20,22 +20,27 @@ var XZLibrary = "摩羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天
 var XZZone = [1222,122,222,321,421,522,622,722,822,922,1022,1122,1222];//每个星座的日期间隔
 var GLibrary = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
 var ZLibrary = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
-var SXLibrary = "鼠牛虎兔龙蛇马羊猴鸡狗猪";
+var SXLibrary = ["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"];
 var solarTerm = ["小寒", "大寒","立春", "雨水","惊蛰", "春分","清明", "谷雨","立夏", "小满","芒种", "夏至",
         		 "小暑", "大暑","立秋", "处暑","白露", "秋分","寒露", "霜降","立冬", "小雪","大雪", "冬至"];
 var termInfo = [0, 21208, 42467, 63836, 85337, 107014,128867, 150921, 173149, 195551, 218072,240693, 263343, 285989, 308563, 331033,
         		353350, 375494, 397447, 419210, 440795,462224, 483532, 504758];//求节气日期的定气常数（各个节气到小寒的分钟数）
 var LunarFestival = ["0101 春节","0115 元宵节","0202 龙头节","0505 端午节","0707 七夕节","0715 中元节","0815 中秋节",
 					"0909 重阳节","1001 寒衣节","1015 下元节","1208 腊八节","1223 小年"];
-var CalFestival = ["0101 元旦","0202 湿地日","0214 情人节","0308 妇女节","0312 植树节","0315 消费者权益日","0401 愚人节","0422 地球日",
+var CalFestival = ["0101 元旦","0202 湿地日","0214 情人节","0308 妇女节","0312 植树节","0315 消费者权益日","0401 愚人节","0404 清明节","0422 地球日",
         			 "0501 劳动节","0504 五四青年节","0512 护士节","0518 博物馆日","0601 儿童节","0605 环境日","0623 奥林匹克日",
         			 "0701 建党节","0801 建军节","0903 抗战胜利日","0910 教师节","1001 国庆节",
         			 "1020 骨质疏松日","1117 学生日","1201 艾滋病日",
         			 "1224 平安夜","1225 圣诞节"];
 var OtherFestival = ["0520 母亲节","0630 父亲节","1144 感恩节"];
+var holidayPlan = ["01033","02137","04043","05023","06113","09173","10077"];
 var lunarDay = [ "一", "二", "三", "四", "五", "六", "七", "八", "九","十"];
 var lunarMon = ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "腊"];
-/*日期资料*/
+var gBLibrary = ["祭祀","安葬","嫁娶","出行","祈福","动土","安床","开光","纳采","入殓",
+"移徙","破土","解除","入宅","修造","栽种","开市","移柩","订盟","拆卸","立卷","交易","求嗣",
+"上梁","纳财","起基","斋醮","赴任","冠笄","安门"]
+
+/*农历日期资料*/
 var lunarInfo = [0x4bd8, 0x4ae0, 0xa570, 0x54d5, 0xd260, 0xd950,
 		0x5554, 0x56af, 0x9ad0, 0x55d2, 0x4ae0, 0xa5b6, 0xa4d0, 0xd250, 0xd295,
 		0xb54f, 0xd6a0, 0xada2, 0x95b0, 0x4977, 0x497f, 0xa4b0, 0xb4b5, 0x6a50,
@@ -121,12 +126,12 @@ function timeStandard(num,sep){
 /*获取当前时间的函数*/
 function getTimeNow() {
 				
-var today = new Date(); //创建一个日期对象，新创建的对象自动获取当前系统的时间	
-var ThourNum, TminuteNum, TsecondNum;
-ThourNum = today.getHours(); //得到当前小时
-TminuteNum = today.getMinutes(); //得到当前分钟
-TsecondNum = today.getSeconds(); //得到当前秒钟							
-displayBjTime(ThourNum,TminuteNum,TsecondNum);
+	var today = new Date(); //创建一个日期对象，新创建的对象自动获取当前系统的时间	
+	var ThourNum, TminuteNum, TsecondNum;
+	ThourNum = today.getHours(); //得到当前小时
+	TminuteNum = today.getMinutes(); //得到当前分钟
+	TsecondNum = today.getSeconds(); //得到当前秒钟							
+	displayBjTime(ThourNum,TminuteNum,TsecondNum);
 				
 
 }
@@ -135,13 +140,14 @@ window.setInterval("getTimeNow();", 1000);//每隔一秒钟调用一次getTimeNo
 function getMonthNow(){
 	
 
-	CLD.SY.selectedIndex=TyearNum - 1901;
-   	CLD.SM.selectedIndex=TmonthNum - 1;
-
+	CalDate.selectYear.selectedIndex=TyearNum - 1901;
+   	CalDate.selectMonth.selectedIndex=TmonthNum - 1;
+   	CalDate.holidayPlan.selectedIndex=0;
+   //console.log(CalDate.selectYear.selectedIndex);
     displayTable(TyearNum,TmonthNum);
 
     displayRDayInfo(TyearNum,TmonthNum,TdayNum,TweekNum);
-    //boxClick();
+   
     getTimeNow();
 }		
 
@@ -204,7 +210,7 @@ function judgeGZ(year,month,day){
     	}
     }
 
-    console.log(GZresult[1]);
+
 
     /*日的干支*/
     var centuryNum = (Math.floor(onelunarDate.year/100)+1);
@@ -229,11 +235,11 @@ function judgeGZ(year,month,day){
 
     return GZresult;
 }
-judgeGZ(2016,2,15);
+
 /*根据年份判断生肖*/
 function judgeSX(year){
 	var SXresult;	
-    SXresult = SXLibrary.charAt((year - 4) % 12);
+    SXresult = SXLibrary[(year - 1900) % 12];
     return SXresult;
 }
 
@@ -245,7 +251,7 @@ function judgeSolarTerm(year, month,day){
         
 	    // 返回某年的第n个节气为几日(从0小寒起算)
 	    function computeTermDay(y, n) {//'节气日的时差公式(时差为分钟)(从1900年大寒到现在这一节气的的分钟数）
-	        var d = new Date((31556925974.7 * (y - start.Year) + termInfo[n] * 60000) + Date.UTC(start.Year,start.Mon, start.GreatColdDay, start.Hour, start.Min));
+	        var d = new Date((31556925974.7 * (y - start.Year) + termInfo[n] * 60000) + Date.UTC(start.Year,start.Mon, start.SmallColdDay, start.SmallColdHour, start.SmallColdMin));
 	        //console.log(d);//31556925974.7一年的毫秒数
 	        return d.getUTCDate();
 	    }
@@ -334,6 +340,7 @@ function oneYearLMonDays(year){
 		return LMonDays;
 }
 
+/*获得某一公历年的每个月的天数，存在CMonDays中*/
 function oneYearCMonDays(year){
 	var CMonInfo = [1,3,5,7,8,10,12];
 	var CMonDays = new Array(12);
@@ -439,6 +446,7 @@ function lunarDate(objDate) {
 		this.day = timeDifference + 1;
 }
 
+/*根据农历月日数字转换成汉字表示*/
 function displayLunar(month,day){
 		
 		this.month =  lunarMon[month - 1] + "月";
@@ -472,6 +480,7 @@ function displayLunar(month,day){
 //var a=new displayLunar(2,20);
 //console.log(a.month);
 //console.log(a.day);
+
 /*根据年月日判断节日*/
 function judgeFes(year,month,day){
 	//将传入的月份和日期转换成合适的形式
@@ -586,10 +595,6 @@ function oneDayAll(year,month,day){
 	this.whickWeek = (day%7 + 1);
 }
 
-//var b=new oneDayAll(2016,4,13);
-//console.log(b.LunYear);
-//console.log(b.LunMonth);
-//console.log(b.LunDay);
 
 /*根据年月判断，获得这一个月的一些信息：这个月的第一天是周几，这个月有多少天*/
 function oneMonthAll(year,month){
@@ -616,9 +621,13 @@ function displayTable(year,month){
 	var calObj = new Array(36);
 	var lunObj = new Array(36);
 	var boxObj = new Array(36);
-	
-	var CalDate,oneSomeDay,displaySomeLun,fesString;
+	var hTranObj = new Array(36);
 
+	var CalDate,oneSomeDay,displaySomeLun,fesString;
+	var holidayMon = Array(7);
+	var holidayDay = Array(7);
+	var holidayNum = Array(7);
+	
 	for(var i = 1;i<36;i++)
 	{
 		//calObj=eval('calD'+ i);
@@ -626,70 +635,100 @@ function displayTable(year,month){
 	    //boxObj=eval('box'+i);
 	    calObj[i] = document.getElementById("calD"+i);
 	    lunObj[i] = document.getElementById("lunD"+i);
+	    hTranObj[i] = document.getElementById("hTran"+i);
 	    boxObj[i] = document.getElementById("box"+i);
 	    
 	    calObj[i].className = "calDateNum";
 	    lunObj[i].className = "lunarDate";
 	    boxObj[i].className = "";
+	    hTranObj[i].style.display = "none";
 		if(i<(oneMonth.firDayWhichWeek+1))
 		{
 			if(month == 1)
 			{
 				CalDate = PreYearLastMon.monthNum - oneMonth.firDayWhichWeek + i;
 				oneSomeDay = new oneDayAll(year-1,12,CalDate);
+				clickBox(boxObj,i,year-1,12);
 			}
 			else
 			{
 				CalDate = PreMonth.monthNum - oneMonth.firDayWhichWeek + i;
 				oneSomeDay = new oneDayAll(year,month-1,CalDate);
+				clickBox(boxObj,i,year,month-1);
 			}
 			
-
-			
-	      	//oneSomeDate = new Date(year,month-1,CalDate);
-	      	//displaySomeLun = new displayLunar(oneSomeDate);
 	      	calObj[i].className = "greyDisplay";
 	      	lunObj[i].className = "greyDisplay";
 
-	      	//console.log(CalDate);
 		}
 		else if(i>=(oneMonth.firDayWhichWeek+1)&&i < (oneMonth.firDayWhichWeek + 1 + oneMonth.monthNum))
 		{
 		  CalDate = i - oneMonth.firDayWhichWeek;
-	      	      
-	      //oneSomeDate = new Date(year,month-1,CalDate);
-	      //displaySomeLun = new displayLunar(oneSomeDate);
+
 	      oneSomeDay = new oneDayAll(year,month,CalDate);
 	      if(oneSomeDay.week == 0|| oneSomeDay.week == 6)  
-	       {//calObj.className = "redFont";
+	      {
 	        	calObj[i].className = "redColor";
-			}
+		  }
 
 			/*点击每一天显示右边的信息栏*/
-			(function(x){
-     			boxObj[x].onclick = function(){
-     				var targetDay = parseInt(event.currentTarget.firstChild.innerHTML);
-     				var dayClick = new oneDayAll(year,month,targetDay);
-     				displayRDayInfo(year,month,targetDay,dayClick.week);}
+			clickBox(boxObj,i,year,month);
 
-     			//boxObj[x].onmouseover = function(){
-     				//event.currentTarget.style.border = "2px solid #E7D8D8";
-     				//}
+  		 	/*显示2016年的休假安排*/
+			if(year == 2016)
+			{																												
+				for(var j=0;j<7;j++)
+				{	
+					holidayMon[j] = parseInt(holidayPlan[j].substr(0,2));
+					holidayDay[j] = parseInt(holidayPlan[j].substr(2,2));
+					holidayNum[j] =	parseInt(holidayPlan[j].substr(4,1));
 
-     			//boxObj[x].onmouseout = function(){
-     				//event.currentTarget.style.border = "2px solid #fff";
-     				//}
-  		 	})(i);
-
-  		 	boxObj[i].style.cursor = "pointer";
+					if(month == holidayMon[j]&&CalDate==holidayDay[j])
+					{						
+							 
+							if(month==5 && CalDate==2)
+							{
+								boxObj[i].className = "redBack";
+								hTranObj[i].style.display = "block";
+								boxObj[i-1].className = "redBack";
+								hTranObj[i-1].style.display = "block";	
+							}
+							
+							else
+							{
+								for(var h=holidayNum[j]-1;h>=0;h--)
+								{															
+									boxObj[i-h].className = "redBack";
+									hTranObj[i-h].style.display = "block";								
+								}
+							}
+								
+							
+								
+																			
+					}
+					
+					
+				}
+			}
+  		 	
 		}
 		else 
 		{
 		  CalDate = i - oneMonth.firDayWhichWeek -oneMonth.monthNum;
 	    
 	      oneSomeDay = new oneDayAll(year,month+1,CalDate);
-	      //oneSomeDate = new Date(year,month+1,CalDate);
-	      //displaySomeLun = new displayLunar(oneSomeDate);
+	      /*点击每一天显示右边的信息栏*/
+			if(month==12)
+			{
+				clickBox(boxObj,i,year+1,1);
+			}
+			else
+			{
+				
+
+    			clickBox(boxObj,i,year,month+1);  
+			}
 	      calObj[i].className = "greyDisplay";
 	      lunObj[i].className = "greyDisplay";
 		}
@@ -697,14 +736,14 @@ function displayTable(year,month){
 		calObj[i].innerHTML = CalDate;
 
 		var displaySomeLun = new displayLunar(oneSomeDay.LunMonth,oneSomeDay.LunDay);
-		if(oneSomeDay.CalFestival=="" && oneSomeDay.LunarFestival=="" && oneSomeDay.OtherFestival=="")
+		if(oneSomeDay.CalFestival=="" && oneSomeDay.LunarFestival=="" && oneSomeDay.OtherFestival==""&&oneSomeDay.solarTerm=="")
 	    {
 	      	lunObj[i].innerHTML = displaySomeLun.day;
 	      	//console.log(displaySomeLun);
 	    }
 	    else
 	    {
-	      	fesString = oneSomeDay.CalFestival + oneSomeDay.LunarFestival + oneSomeDay.OtherFestival;
+	      	fesString = oneSomeDay.solarTerm+oneSomeDay.CalFestival + oneSomeDay.LunarFestival + oneSomeDay.OtherFestival;
 	      	if(fesString.length>3)
 			{lunObj[i].innerHTML=fesString.substr(0,2)+"...";}
 			else
@@ -722,24 +761,26 @@ function displayTable(year,month){
 	    if(year==TyearNum && month==TmonthNum && CalDate==TdayNum)
 	    {
 	    	
-	    	//alert("1");
 	    	boxObj[i].className = "isToday";
 	    
 	    }
-	    //else
-	    //{
-	    	//boxObj[i].style.border = "2px solid #fff";
-	    	//boxObj[i].style.borderRadius = "0px";
-	    //}
+	   
 
 	}	
+
+	if(year == 2016 && month==4 )
+	{
+		boxObj[35].className = "redBack";
+		hTranObj[35].style.display = "block";
+	}
+			
 }
 //displayTable(1901,1);
-//在下拉列表中选择年月时,调用自定义函数drawCld(),显示公历和农历的相关信息
-function changeCld() {
+//在下拉列表中选择年月时,调用自定义函数displayTable();,显示公历和农历的相关信息
+function changeCaldate() {
    var y,m;
-   y=CLD.SY.selectedIndex+1901;
-   m=CLD.SM.selectedIndex+1;
+   y=CalDate.selectYear.selectedIndex+1901;
+   m=CalDate.selectMonth.selectedIndex+1;
    displayTable(y,m);
 }
 
@@ -750,12 +791,10 @@ function displayBjTime(hour,minute,second)
 	hour = timeStandard(hour,":");
 	minute = timeStandard(minute,":");
 	second = timeStandard(second,"");				
-	timeNow.innerHTML = hour + minute + second;
-
-					
+	timeNow.innerHTML = hour + minute + second;					
 }
 
-
+/*右边显示每一天的详细信息*/
 function displayRDayInfo(year,month,day,week)
 {
 	yearStr = year + "-";
@@ -773,12 +812,111 @@ function displayRDayInfo(year,month,day,week)
 	var targetObj = new oneDayAll(year,month,day);
 	var displayObj = new displayLunar(targetObj.LunMonth,targetObj.LunDay);
 	lunarCal.innerHTML = "农历" + displayObj.month + displayObj.day;
-}
 
+	var goodBadItems =goodAndBad(year,month,day);
+	suitItems.innerHTML = goodBadItems.goodEvent[0]+" "+goodBadItems.goodEvent[1]+" "+goodBadItems.goodEvent[2];
+	avoidItems.innerHTML = goodBadItems.badEvent[0]+" "+goodBadItems.badEvent[1]+" "+goodBadItems.badEvent[2];
+}
+//displayRDayInfo(2016,4,15,5);
+/*返回今天*/
 var gotoToday = document.getElementById("back-to-today");
 
 gotoToday.onclick = function(){
-	CLD.SY.selectedIndex = TyearNum;
-	CLD.SM.selectedIndex = TmonthNum;
+	CalDate.selectYear.selectedIndex = TyearNum;
+	CalDate.selectMonth.selectedIndex = TmonthNum - 1;
 }
+
+/*查看2016年假日安排*/
+function checkHolidayPlan(){
+	
+	var holN = CalDate.holidayPlan.selectedIndex-1; 
+	goHoliday(holN);
+	
+}
+
+/*根据输入的节日对应的selecedIndex来显示日历中的数据和右边的信息栏*/
+function goHoliday(holN){		
+		var holidayDate = ["0101","0208","0404","0501","0609","0915","1001"]
+		var year = 2016;
+		var month = parseInt(holidayDate[holN].substr(0,2));
+		var day = parseInt(holidayDate[holN].substr(2,2));
+		CalDate.selectYear.selectedIndex = 115;
+		CalDate.selectMonth.selectedIndex = month - 1;
+		var holiObj = new Date(year,month-1,day);
+		var week = holiObj.getDay();
+		displayTable(year,month);
+		displayRDayInfo(year,month,day,week);
+	} 
+
+/*月份加减*/
+var preMon = document.getElementById("prev-month");
+var nextMon = document.getElementById("next-month");
+
+preMon.onclick = function(){
+	if(CalDate.selectMonth.selectedIndex > 0)
+	{
+		CalDate.selectMonth.selectedIndex--;
+	}
+	else
+	{
+		CalDate.selectMonth.selectedIndex = 0;
+	}
+	changeCaldate();
+	
+}
+
+nextMon.onclick = function(){
+	if(CalDate.selectMonth.selectedIndex < 11)
+	{
+		CalDate.selectMonth.selectedIndex++;
+	}
+	else
+	{
+		CalDate.selectMonth.selectedIndex = 11;
+	}
+	changeCaldate();
+}
+
+/*宜忌事项*/
+function goodAndBad(year,month,day){
+	var gNum =Math.floor(4* Math.random());
+	var bNum =Math.floor(4* Math.random());
+	var Ran ;
+	var goodEvent = ["","",""];
+	var badEvent = ["","",""];
+	var gbObj = new oneDayAll(year,month,day);
+	var num = (gbObj.LunDay)%30;
+	
+	for(var j=0;j<gNum;j++)
+	{			
+		goodEvent[j] = gBLibrary[(2+j*5)%30];		
+	}	
+	for(var j=0;j<bNum;j++)
+	{
+			
+		badEvent[j] = gBLibrary[(4+j*5)%30];		
+	}
+						
+	return{
+		goodEvent:goodEvent,
+		badEvent:badEvent
+		}
+	
+}
+
+/*点击每一天显示右边的信息栏*/
+function clickBox(boxObj,x,year,month){
+    
+	boxObj[x].onclick = function(){
+	var box = event.currentTarget ? event.currentTarget : event.srcElement;//解决IE9下没有currentTarget这个属性的问题
+	while(box.nodeName!="TD")
+	{
+		box = box.parentNode;  
+	}
+    var targetDay = parseInt(box.firstChild.innerHTML);
+
+    var dayClick = new oneDayAll(year,month,targetDay);
+    displayRDayInfo(year,month,targetDay,dayClick.week);}
+}
+
 
