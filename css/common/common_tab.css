@@ -1,0 +1,41 @@
+/*common_tab.css*/
+.tab {
+	width: 500px;
+	height: 300px;
+}
+
+.tab-menuWrap {
+	width: 100%;
+	height: 50px;
+}
+
+.J_tab-menu {
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	float: left;
+	display: inline-block;
+	border: 1px #B2ABAB solid;
+	cursor: pointer;
+	box-sizing: border-box;
+	margin: 0px 5px;
+}
+
+.tab-conWrap {
+	width: 100%;
+	height: 250px;
+}
+
+.J_tab-con {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+	border: 1px #B2ABAB solid;
+	font-size: 50px;
+}
+
+.tab-curMenu {
+	background: #eee;
+}
