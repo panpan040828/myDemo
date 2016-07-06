@@ -230,34 +230,3 @@ define(["../base/base"], function(GLOBAL) {
 	}
 	return FloatLayer;
 });
-
-
-
-// var myFloatDiv = new FloatLayer(myFloatLayer,alertDiv,header,resizeRig,resizeBot,resizeDiv);
-
-// eventMonitor(btnOpen, "click", function() {
-// 	myFloatDiv.init();
-// 	myFloatDiv.show();	
-// });
-
-// eventMonitor(btnSure, "click", function() {
-// 	myFloatDiv.hide();
-// });
-
-// eventMonitor(btnCancel, "click", function() {
-// 	myFloatDiv.hide();
-// });
-
-// //给alert框绑定一个click事件，阻止冒泡
-// eventMonitor(alertDiv, "click", function(e) {
-// 	e.stopPropagation();
-// });
-
-// eventMonitor(myFloatLayer, "click", function(e) {
-// 	myFloatDiv.hide();
-// });
-
-// //启用浮出层的拖拽功能
-// myFloatDiv.dragDiv();
-
-// myFloatDiv.resizeDiv();
