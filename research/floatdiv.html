@@ -3,26 +3,27 @@
 	<head>
 		<title>浮出层</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="css/floatdiv.css">
+		<link rel="stylesheet" type="text/css" href="css/floatDiv/floatDiv.css">
 		
 	</head>
 	<body>
-		<input id="btnDiv" class="float-button" type="submit" value="弹出浮出层" />
+		<input class="float-button J_floatBtn" type="submit" value="弹出浮出层" />
 		<div class="float-div" id="floatDiv" style="visibility:hidden;">
-			<div class="alert" id="alertDiv" style="visibility:hidden;"  >
+			 <!-- <div class="alert" id="alertDiv" style="visibility:hidden;"  >
 				<div id="alertHeader" class="alert-header">这是一个浮出层</div>
 				<div class="alert-body">
-					<div class="alert-content">这是浮出层的内容</div>
-					<div class="alert-bottom">
-						<input id="btnSure" class="alert-button" type="submit" value="确认" />
-						<input id="btnCancel" class="alert-button" type="submit" value="取消" />				
-					</div>
+					这是浮出层的内容					
+				</div>
+				<div class="alert-footer">
+					<input id="btnSure" class="alert-button" type="submit" value="确认" />
+					<input id="btnCancel" class="alert-button" type="submit" value="取消" />	
 				</div>
 				<div id="resizeRig" class="resize-right"></div>
 				<div id="resizeBot" class="resize-bottom"></div>
 				<div id="resizeDiv" class="resize-div"></div>
-			</div>
+
+			</div> -->
 		</div>
-		<script type="text/javascript" src="js/floatdiv.js"></script>
+		<script type="text/javascript" src="js/base/require.js" data-main="js/floatDiv/main.js"></script>
 	</body>
 </html>

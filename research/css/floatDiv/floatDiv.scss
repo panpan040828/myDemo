@@ -1,0 +1,97 @@
+$themeColor: #58A1D5;
+@mixin resize($width,$height,$cursor) {
+	width: $width;
+	height: $height;
+	cursor: $cursor;
+}
+@import "../base/hack";
+
+html, body {
+	margin: 0px;
+	height: 100%;
+	overflow: hidden;
+	font-family: Mircorsoft Yahei;
+}
+
+.float-button {
+	width: 100px;
+	height: 40px;
+	border: 0px;
+	border-radius: 5px;
+	background: #58A1D5;
+	color: #fff;
+	font-size: 15px;		
+	position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+}
+
+.float-div {
+	background: rgba(86, 83, 83, 0.50);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+}
+
+.alert {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate(-50%,-50%));
+	width: 500px;
+	border: 1px solid #A59898;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.alert-header {
+	background: $themeColor;
+	padding: 15px 10px;
+	color: #fff;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	cursor: move;
+}
+
+.alert-body {
+	padding: 20px;
+	min-height: 200px;
+}
+
+.alert-footer {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.alert-button {
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 15px;
+	background: $themeColor;
+	color: #fff;
+}
+
+.resize-right, .resize-bottom, .resize-div{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.resize-right {
+	@include resize(10px,100%,e-resize);
+}
+
+.resize-bottom {
+	@include resize(100%,10px,n-resize);
+}
+
+.resize-div {
+	@include resize(10px,10px,nw-resize);
+}
