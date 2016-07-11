@@ -255,5 +255,3 @@
 	var input = document.getElementById("dateInput");
 	var mydatepicker = new DatePicker(wrap,input,1901,2049);
 })();
-
-

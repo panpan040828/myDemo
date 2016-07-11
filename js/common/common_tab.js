@@ -43,7 +43,6 @@ SetTab.prototype = {
 		for(var i = 0; i < this._tabContents.length; i++) {
 			this._tabContents[i].style.display = "none";
 		}
-
 		//对应的tab内容显示
 		this._tabContents[n].style.display = "block";
 
