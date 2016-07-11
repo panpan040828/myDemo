@@ -10,8 +10,11 @@ var SetTab = function(config) {
 	this._handler = config.handler;
 	var autoPlay = config.autoPlay;
 	var playTime = config.playTime || 3000;
+
+	//这里使用"J_tab-menu"这种形式作为className是有用途的，表明这个class与js有关
 	this._tabMenus = GLOBAL.Dom.getElementsByClassName("J_tab-menu"),
-	this._tabContents  = GLOBAL.Dom.getElementsByClassName("J_tab-con");//这里使用"J_tab-menu"这种形式作为className是有用途的，表明这个class与js有关
+	this._tabContents  = GLOBAL.Dom.getElementsByClassName("J_tab-con");
+
 	this.curIndex = 0;
 
 	var that = this;
@@ -40,7 +43,9 @@ SetTab.prototype = {
 		for(var i = 0; i < this._tabContents.length; i++) {
 			this._tabContents[i].style.display = "none";
 		}
-		this._tabContents[n].style.display = "block";//对应的tab内容显示
+
+		//对应的tab内容显示
+		this._tabContents[n].style.display = "block";
 
 		if(this._curClass) {
 
@@ -48,11 +53,13 @@ SetTab.prototype = {
 			if(curMenu) {
 				GLOBAL.Dom.removeClass(curMenu,this._curClass);
 			}
-			GLOBAL.Dom.addClass(this._tabMenus[n],this._curClass);//对应的tab菜单显示
+			//对应的tab菜单显示
+			GLOBAL.Dom.addClass(this._tabMenus[n],this._curClass);
 		}
 
 		if(this._handler) {
-			this._handler(n);//回调函数
+			//回调函数
+			this._handler(n);
 		}
 	},
 

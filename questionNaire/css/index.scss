@@ -1,0 +1,149 @@
+@import "base/var";
+@import "base/mixin";
+@import "common/floatDiv/floatDiv";
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?lrib18');
+    src:    url('fonts/icomoon.eot?lrib18#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?lrib18') format('truetype'),
+        url('fonts/icomoon.woff?lrib18') format('woff'),
+        url('fonts/icomoon.svg?lrib18#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-question-circle:before {
+    content: "\f059";
+}
+
+nav {
+    background: $themeColor;
+    padding: 10px 50px;
+}
+nav a{
+    color: #fff;
+}
+.nav-header {
+    font-size: 18px;
+    font-weight: 600;
+    .icon-question-circle {
+        font-size: 20px;
+        margin-right: 2px;
+    }
+}
+
+.nav-item {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.nav-right {
+    float: right;
+}
+
+.nav-logIn, .nav-register {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+main {
+    background: $bagColor;
+    padding: 50px 10%;
+    color: $fontColor;
+    height: 100%;
+}
+
+.quesNaire-tr {
+    display: flex;
+    height: 50px;
+}
+
+.quesNaire-td1 {
+    flex: 1;
+    text-align: center;
+}
+
+.quesNaire-td2, .quesNaire-td5 {
+    flex: 4;
+}
+
+.quesNaire-td3 {
+    flex: 3;
+}
+
+.quesNaire-td4 {
+    flex: 2;
+}
+
+.quesNaire-body, .quesNaire-footer {
+    background: #fff;
+}
+
+.quesNaire-header, .quesNaire-body, {
+    padding: 10px 15px;
+}
+
+.quesNaire-footer {
+    padding: 15px 15px;
+}
+
+[class*="quesNaire-body-item"] {
+    border-bottom: $border;
+    
+    .quesNaire-td3 {
+        font-size: 13px;
+    }
+
+    .quesNaire-td5 {
+        input {
+            @include inputButton;
+            background: #fff;
+        }
+    }  
+
+    &:hover {
+        background-color: $hoverColor;
+    }  
+}
+
+[class*="quesNaire-td"] {
+    line-height: 50px;
+}
+
+#clearAll {
+    @include inputButton;
+    background: #fff;
+    margin-left: 10px;
+}
+
+#createNew {
+    @include inputButton;
+    background-color: $themeColor;
+    margin-left: 120px;
+    color: #fff;
+}
+
+footer {
+    @extend nav;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+}
+
+@import "base/_reset.css";
