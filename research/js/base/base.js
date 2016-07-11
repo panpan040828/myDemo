@@ -178,6 +178,6 @@ define(function() {
 			node.detachEvent("on" + type, fn);
 		}
 	}
-
+	
 	return GLOBAL;
 });

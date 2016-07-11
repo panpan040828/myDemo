@@ -22,48 +22,22 @@ define(["../base/base"], function(GLOBAL) {
 			flag: false
 		};
 		
-		//初始化，生成浮出层
 		this.init();
 
-		//给按钮绑定事件
-		var that = this;
-		for(var i = 0; i < this.popupBtn.length; i++) {
-			(function(_i) {
-				GLOBAL.Eve.addEvent(that.popupBtn[_i],"click",function() {
-					that.initContent(_i);
-					that.initSize();
-					that.show(_i);
-				});
+		this.btnEvent();				
+			
 
-				GLOBAL.Eve.addEvent(that.root,"click",function() {
-					that.hide(_i);
-				});
+		if(this.isMove == true) {
+			this.dragDiv();
+		};
 
-				//阻止弹出框上的点击事件冒泡到浮出层上
-				GLOBAL.Eve.addEvent(that.root.children[0],"click",function(e) {
-					e.stopPropagation();
-				});	
-
-				GLOBAL.Eve.addEvent(that._alertDiv.btnSure,"click",function() {
-					that.hide(_i);
-				});
-
-				GLOBAL.Eve.addEvent(that._alertDiv.btnCancel,"click",function() {
-					that.hide(_i);
-				});
-
-				if(that.isMove[_i] == true) {
-					console.log("1");
-					that.dragDiv();
-				};
-
-				if(that.isZoom[_i] == true) {
-					that.resizeDiv();
-					console.log("2");
-				}			
-			})(i);
+		if(this.isZoom == true) {
+			this.resizeDiv();
 		}
+							
+			
 	}
+	
 
 	FloatLayer.prototype = {
 		constructor: FloatLayer,
@@ -86,7 +60,6 @@ define(["../base/base"], function(GLOBAL) {
 								+ "<div id='resizeRig' class='resize-right'></div>"
 								+ "<div id='resizeBot' class='resize-bottom'></div>"
 								+ "<div id='resizeDiv' class='resize-div'></div>";
-			console.log(this.popupBtn);
 			this.root.appendChild(alertDiv);
 
 			var elehead = GLOBAL.Dom.$("alertHeader");
@@ -105,16 +78,18 @@ define(["../base/base"], function(GLOBAL) {
 				resizeDiv: resizeDiv,
 				btnSure: btnSure,
 				btnCancel: btnCancel
-			};			
+			};	
+			console.log("1");		
 		},
 
 		//初始化弹出框的内容
-		initContent: function(i) {
+		initContent: function() {
 			var alertDiv = this._alertDiv;
-			var title = this.floatContent[i].title;
-			var content = this.floatContent[i].content;			
+			var title = this.floatContent.title;
+			var content = this.floatContent.content;			
 			alertDiv.head.innerHTML = title;
-			alertDiv.body.innerHTML = content;		
+			alertDiv.body.innerHTML = content;	
+			console.log("init");	
 		},
 
 		//初始化弹出框的位置和长宽
@@ -127,7 +102,9 @@ define(["../base/base"], function(GLOBAL) {
 		},
 
 		//弹出框出现
-		show: function(i) {	
+		show: function() {	
+			this.initContent();
+			this.initSize();
 			var that = this.root;		
 			var alert = this._alertDiv.wrap;
 			that.style.visibility = "visible";
@@ -139,15 +116,19 @@ define(["../base/base"], function(GLOBAL) {
 		},
 
 		//弹出框隐藏
-		hide: function(i) {	
+		hide: function() {
 			var that = this.root;
+			console.info(this);
 			var alert = this._alertDiv.wrap;	
 			alert.style.transition = "transform 200ms linear";
 			alert.style.transform = 'translate(-50%, -50%) scale(0,0)';
 			alert.style.visibility = "hidden";				
 			setTimeout(function(){
 				that.style.visibility = "hidden";
-			}, 200);	
+			}, 200);
+			//console.log(that);
+			that.removeChild(alert);
+			//console.log(that);
 		},
 
 		//定义一个方法，实现拖拽功能
@@ -226,6 +207,30 @@ define(["../base/base"], function(GLOBAL) {
 							GLOBAL.Eve.addEvent(document, "mouseup", stopDrag);
 						}
 					});		
+		},
+
+		btnEvent: function() {
+
+			//给按钮绑定事件
+			var that = this;
+
+			//用这种方式绑定事件只会执行一次绑定事件里面的回调函数
+			that.root.onclick = function() {
+				that.hide();
+			}
+
+			//阻止弹出框上的点击事件冒泡到浮出层上
+			GLOBAL.Eve.addEvent(that.root.children[0],"click",function(e) {
+				e.stopPropagation();
+			});	
+
+			GLOBAL.Eve.addEvent(that._alertDiv.btnSure,"click",function() {
+				that.hide();
+			});
+
+			GLOBAL.Eve.addEvent(that._alertDiv.btnCancel,"click",function() {
+				that.hide();
+			});
 		}
 	}
 	return FloatLayer;
