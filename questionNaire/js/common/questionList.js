@@ -1,4 +1,4 @@
-define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
+define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 	var QuesList = function(config) {
 		this.root = config.root;
 		this.num = config.num;
@@ -13,12 +13,16 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 		var listCheckbox = [];
 		var that = this;
 
+		// for (var i = 0; i < this.num; i++) {
+		// 	listCheckbox.push(G.Dom.$("list-" + (i + 1)));	
+		// }
 		//给每个问卷的四个按钮绑定事件
 		for (var i = 0; i < this.num; i++) {
-							
+						
 			(function(_i) {
 				var button = G.Dom.getElementsByClassName("J_quesNaire-button",listItems[_i],"input");
 				var state = G.Dom.getElementsByClassName("J_quesNaire-state",listItems[_i],"div")[0];
+				var checkBox = G.Dom.$("list-" + (_i + 1));
 				G.Eve.addEvent(button[0],"click",function() {				
 					console.log(state);
 					if(state.innerText == "发布中" || state.innerText == "已结束") {
@@ -62,17 +66,22 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 				G.Eve.addEvent(button[3],"click",function() {					
 					alert("跳到数据分析页！");															
 				});
-			})(i);	
 
-			listCheckbox.push(G.Dom.$("list-" + (i + 1)));	
+				G.Eve.addEvent(checkBox,"click",function() {					
+					if(checkBox.checked == true) {
+						listCheckbox.push(checkBox);
+					}															
+				});
+			})(i);				
 		}
-		
+
 		//给全选按钮绑定事件
 		G.Eve.addEvent(listAll,"click",function() {
-			console.log(listAll.checked);					
-			if(listAll.checked == true) {
+			listCheckbox = G.Dom.getElementsByClassName("J_checkBox");
+			console.log(listAll.checked);
+			if(listAll.checked == "checked") {
 				listCheckbox.forEach(function(item,index,arr) {
-					return item.checked = true;
+					return item.checked = "checked";
 				});
 			} else {
 				listCheckbox.forEach(function(item,index,arr) {
@@ -82,12 +91,10 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 		});
 
 		//给删除选中项的删除按钮绑定事件
-		G.Eve.addEvent(clearAll,"click",function() {
-			console.log(listAll.checked);					
+		G.Eve.addEvent(clearAll,"click",function() {				
 			var itemChecked = listCheckbox.filter(function(item,index,arr) {					
 					return item.checked == true;
 			});
-			
 			itemChecked.forEach(function(item,index,arr) {
 				return that.listBody.removeChild(item.parentNode.parentNode);
 			});														
@@ -126,7 +133,7 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 				var quesItem = document.createElement("div");
 				quesItem.className = "quesNaire-tr" + " " + "quesNaire-body-item" + i;
 				quesItem.innerHTML = "<div class='quesNaire-td1'>"
-									+ "<input id='list-" + i + "' type='checkbox' />"
+									+ "<input id='list-" + i + "' type='checkbox' class='J_checkBox' />"
 									+ "</div>"
 									+ "<div class='quesNaire-td2'>"
 									+ "<label for='list-" + i + "'>这是你的第<span>" + i
@@ -152,7 +159,7 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 			var e = window.event || event;
 			var target = e.target || e.srcElement;
 			this.listBody.removeChild(target.parentNode.parentNode);
-		},
+		}
 	}
 
 	return {

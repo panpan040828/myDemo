@@ -226,6 +226,9 @@ define(["../base/base"], function(GLOBAL) {
 
 			GLOBAL.Eve.addEvent(that._alertDiv.btnSure,"click",function() {
 				that.hide();
+				if(that._handler) {
+					that._handler();
+				}
 			});
 
 			GLOBAL.Eve.addEvent(that._alertDiv.btnCancel,"click",function() {

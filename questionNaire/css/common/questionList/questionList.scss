@@ -1,0 +1,74 @@
+.quesNaire {
+    background: $bagColor;
+    color: $fontColor;
+}
+
+.quesNaire-tr {
+    display: flex;
+    height: 50px;
+}
+
+.quesNaire-td1 {
+    flex: 1;
+    text-align: center;
+}
+
+.quesNaire-td2, .quesNaire-td5 {
+    flex: 4;
+}
+
+.quesNaire-td3 {
+    flex: 3;
+}
+
+.quesNaire-td4 {
+    flex: 2;
+}
+
+.quesNaire-body, .quesNaire-footer {
+    background: #fff;
+}
+
+.quesNaire-header, .quesNaire-body, {
+    padding: 10px 15px;
+}
+
+.quesNaire-footer {
+    padding: 15px 15px;
+}
+
+[class*="quesNaire-body-item"] {
+    border-bottom: $border;
+    
+    .quesNaire-td3 {
+        font-size: 13px;
+    }
+
+    .quesNaire-td5 {
+        input {
+            @include inputButton;
+            background: #fff;
+        }
+    }  
+
+    &:hover {
+        background-color: $hoverColor;
+    }  
+}
+
+[class*="quesNaire-td"] {
+    line-height: 50px;
+}
+
+#clearAll {
+    @include inputButton;
+    background: #fff;
+    margin-left: 10px;
+}
+
+#createNew {
+    @include inputButton;
+    background-color: $themeColor;
+    margin-left: 130px;
+    color: #fff;
+}
