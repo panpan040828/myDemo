@@ -1,4 +1,4 @@
-@import url(base/_reset.css);
+@import "https://github.com/panpan040828/myDemo/blob/gh-pages/questionNaire/css/base/_reset.css";
 .float-div {
   background: rgba(86, 83, 83, 0.5);
   width: 100%;
@@ -132,7 +132,7 @@
   cursor: pointer;
   margin-right: 5px;
   background-color: #f2986a;
-  margin-left: 120px;
+  margin-left: 130px;
   color: #fff; }
 
 @font-face {
