@@ -79,9 +79,9 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 		G.Eve.addEvent(listAll,"click",function() {
 			listCheckbox = G.Dom.getElementsByClassName("J_checkBox");
 			console.log(listAll.checked);
-			if(listAll.checked == "checked") {
+			if(listAll.checked == true) {
 				listCheckbox.forEach(function(item,index,arr) {
-					return item.checked = "checked";
+					return item.checked = true;
 				});
 			} else {
 				listCheckbox.forEach(function(item,index,arr) {
