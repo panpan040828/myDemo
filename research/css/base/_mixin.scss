@@ -26,3 +26,11 @@
 	opacity: $opacity;
 	filter: alpha(opacity=$opacity * 100);
 }
+
+@mixin inputButton {    
+    padding: 3px 5px;
+    border: $border;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}

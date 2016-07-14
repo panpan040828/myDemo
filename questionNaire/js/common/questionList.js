@@ -24,7 +24,6 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 				var state = G.Dom.getElementsByClassName("J_quesNaire-state",listItems[_i],"div")[0];
 				var checkBox = G.Dom.$("list-" + (_i + 1));
 				G.Eve.addEvent(button[0],"click",function() {				
-					console.log(state);
 					if(state.innerText == "发布中" || state.innerText == "已结束") {
 						var floatLayer = new FloatLayer({		
 							root: G.Dom.$("floatDiv"),
@@ -43,6 +42,8 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 				});
 
 				G.Eve.addEvent(button[1],"click",function(event) {
+					var e = window.event || event;
+					var target = e.target || e.srcElement;
 					var floatLayer = new FloatLayer({		
 						root: G.Dom.$("floatDiv"),
 						isMove: true,
@@ -52,7 +53,7 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 							content: "确定要删除第" + (_i + 1) + "份问卷吗？"
 						},
 						_handler: function() {
-							that.deleteItem(event);
+							that.deleteItem(target);
 						}					
 					});
 					//初始化，生成浮出层				
@@ -78,7 +79,7 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 		//给全选按钮绑定事件
 		G.Eve.addEvent(listAll,"click",function() {
 			listCheckbox = G.Dom.getElementsByClassName("J_checkBox");
-			console.log(listAll.checked);
+
 			if(listAll.checked == true) {
 				listCheckbox.forEach(function(item,index,arr) {
 					return item.checked = true;
@@ -155,9 +156,7 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 			this.root.appendChild(quesFooter);	
 		},
 
-		deleteItem: function(event) {
-			var e = window.event || event;
-			var target = e.target || e.srcElement;
+		deleteItem: function(target) {
 			this.listBody.removeChild(target.parentNode.parentNode);
 		}
 	}

@@ -78,8 +78,7 @@ define(["../base/base"], function(GLOBAL) {
 				resizeDiv: resizeDiv,
 				btnSure: btnSure,
 				btnCancel: btnCancel
-			};	
-			console.log("1");		
+			};			
 		},
 
 		//初始化弹出框的内容
@@ -88,8 +87,7 @@ define(["../base/base"], function(GLOBAL) {
 			var title = this.floatContent.title;
 			var content = this.floatContent.content;			
 			alertDiv.head.innerHTML = title;
-			alertDiv.body.innerHTML = content;	
-			console.log("init");	
+			alertDiv.body.innerHTML = content;		
 		},
 
 		//初始化弹出框的位置和长宽
@@ -118,7 +116,6 @@ define(["../base/base"], function(GLOBAL) {
 		//弹出框隐藏
 		hide: function() {
 			var that = this.root;
-			console.info(this);
 			var alert = this._alertDiv.wrap;	
 			alert.style.transition = "transform 200ms linear";
 			alert.style.transform = 'translate(-50%, -50%) scale(0,0)';
@@ -126,9 +123,7 @@ define(["../base/base"], function(GLOBAL) {
 			setTimeout(function(){
 				that.style.visibility = "hidden";
 			}, 200);
-			//console.log(that);
 			that.removeChild(alert);
-			//console.log(that);
 		},
 
 		//定义一个方法，实现拖拽功能
@@ -137,8 +132,7 @@ define(["../base/base"], function(GLOBAL) {
 			var alert = this._alertDiv.wrap;
 			var eleHead = this._alertDiv.head;			
 			this.dynamic(eleHead,alert,"left",needParams);
-			this.dynamic(eleHead,alert,"top",needParams);
-				
+			this.dynamic(eleHead,alert,"top",needParams);				
 		},
 
 		//实现扩大缩小弹出框

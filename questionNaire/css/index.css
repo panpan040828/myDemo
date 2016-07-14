@@ -196,7 +196,7 @@ footer {
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
   margin: 0;
   padding: 0;
-  font-family: "Mircosoft YaHei"; }
+  font-family: Microsoft YaHei; }
 
 table {
   border-collapse: collapse;
@@ -215,10 +215,6 @@ ol, ul {
 caption, th {
   text-align: left; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
-  font-weight: normal; }
-
 q:before, q:after {
   content: ""; }
 
@@ -233,5 +229,9 @@ div, a, p {
 
 body, html {
   height: 100%; }
+
+/*html5*/
+main, article, aside, dialog, footer, header, section, footer, nav, footer, figure, menu {
+  display: block; }
 
 /*# sourceMappingURL=index.css.map */
