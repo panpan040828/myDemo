@@ -5,6 +5,7 @@ $border: 1px #C7B8B8 solid;
 $hoverColor: #F7DFCF;
 
 @import "../floatDiv/floatDiv";
+
 @mixin inputButton {    
     padding: 3px 5px;
     border: $border;
@@ -88,4 +89,4 @@ $hoverColor: #F7DFCF;
     color: #fff;
 }
 
-@import "../base/_reset.css";
+@import "../base/_reset.scss";
