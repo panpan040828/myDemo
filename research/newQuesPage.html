@@ -21,67 +21,20 @@
 		</header>
 		<main>
 			<div id="newQues" class="newQues">
-				<div class="newQues-header">
+				<div class="newQues-header" id="newQuesHeader">
 					<input type="text" value="第一份问卷" />
 				</div>
-				<div class="newQues-body">
-					<div class="newQues-content">
-						<div class="newQues-item1">
-							<h4>Q1 你最喜欢的水果是？</h4>
-							<label class="floatRig"><input type="checkbox" />此题是否必填</label>
-							<div class="newQues-options">
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-							</div>
-							<div class="floatRig newQues-change">
-								<input type="button" value="下移" />
-								<input type="button" value="复用" />
-								<input type="button" value="移除" />
-							</div>
-						</div>
-						<div class="newQues-item">
-							<h4>Q1 你最喜欢的水果是？</h4>
-							<label class="floatRig"><input type="checkbox" />此题是否必填</label>
-							<div class="newQues-options">
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-							</div>
-							<div class="floatRig newQues-change">
-								<input type="button" value="下移" />
-								<input type="button" value="复用" />
-								<input type="button" value="移除" />
-							</div>
-						</div>
-						<div class="newQues-item">
-							<h4>Q1 你最喜欢的水果是？</h4>
-							<label class="floatRig"><input type="checkbox" />此题是否必填</label>
-							<div class="newQues-options">
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-								<label><input name="1" type="radio" />苹果</label>
-							</div>
-							<div class="floatRig newQues-change">
-								<input type="button" value="下移" />
-								<input type="button" value="复用" />
-								<input type="button" value="移除" />
-							</div>
-						</div>
-					</div>
+				<div class="newQues-body">				
+				</div>
+				<div class="newQues-footer">
 					<div class="newQues-btns">
-						<div class="newQues-btnType">
+						<div id="btnType" class="newQues-btnType" style="height: 0;">
 							<input type="button" value="单选" />
 							<input type="button" value="多选" />
 							<input type="button" value="文本框" />
 						</div>
-						<input class="newQues-btnAdd" type="button" value="+ 添加问题" />
-						
-				</div>
-				<div class="newQues-footer">
+						<input id="addQuest" class="newQues-btnAdd" type="button" value="+ 添加问题" />
+					</div>
 					<div class="dateWrap" id="dateWrap">
 					</div>
 					<div class="floatRig">
@@ -89,9 +42,9 @@
 						<input type="button" value="发布问卷" />
 					</div>
 				</div>
-			</div>						
+			</div>								
 		</main>
-		<div class="float-div" id="floatDiv" style="visibility:hidden;"></div>
+		<div class="float-div" id="floatDiv" style="visibility:hidden;"></div>	
 		<footer>
 			Copyright@ 2016 yupan
 		</footer>
