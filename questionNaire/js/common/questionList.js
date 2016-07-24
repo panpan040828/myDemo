@@ -10,6 +10,7 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 		var listItems = this.listBody.children;
 		var listAll = G.Dom.$("list-all");
 		var clearAll = G.Dom.$("clearAll");
+		var newQuest = G.Dom.$("createNew");
 		var listCheckbox = [];
 		var that = this;
 
@@ -61,7 +62,8 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 				});
 
 				G.Eve.addEvent(button[2],"click",function() {					
-					alert("跳到查看问卷页！");															
+					//alert("跳到查看问卷页！");	
+					window.location.href = "newQuesPage.html";														
 				});
 
 				G.Eve.addEvent(button[3],"click",function() {					
@@ -99,6 +101,11 @@ define(["../base/base","../common/common_floatDiv"], function(G,FloatLayer) {
 			itemChecked.forEach(function(item,index,arr) {
 				return that.listBody.removeChild(item.parentNode.parentNode);
 			});														
+		});
+
+		//给新建问卷按钮绑定事件
+		G.Eve.addEvent(newQuest,"click",function() {				
+			window.location.href = "newQuesPage.html";														
 		});
 	}
 
