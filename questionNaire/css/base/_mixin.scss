@@ -32,4 +32,11 @@
     border: $border;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 5px;
+}
+
+@mixin boxSizing($boxType) {
+	box-sizing: $boxType;
+	-moz-box-sizing:$boxType; /* Firefox */
+	-webkit-box-sizing:$boxType; /* Safari */
 }

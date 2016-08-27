@@ -6,9 +6,14 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 		this.init();
 
 		this.listBody = G.Dom.getElementsByClassName("quesNaire-body")[0];
+		
 		var listItems = this.listBody.children;
+		var listAll = G.Dom.$("list-all");
+		var clearAll = G.Dom.$("clearAll");
 		var listCheckbox = [];
 		var that = this;
+
+		//给每个问卷的四个按钮绑定事件
 		for (var i = 0; i < this.num; i++) {
 							
 			(function(_i) {
@@ -24,7 +29,7 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 							floatContent: {
 								title: "提示",
 								content: "问卷" + (_i + 1) + "正在发布中或者已结束，不能再进行编辑！"
-							}					
+							},							
 						});
 						//初始化，生成浮出层				
 						floatLayer.show();
@@ -33,7 +38,7 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 					}										
 				});
 
-				G.Eve.addEvent(button[1],"click",function() {
+				G.Eve.addEvent(button[1],"click",function(event) {
 					var floatLayer = new FloatLayer({		
 						root: G.Dom.$("floatDiv"),
 						isMove: true,
@@ -41,6 +46,9 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 						floatContent: {
 							title: "提示",
 							content: "确定要删除第" + (_i + 1) + "份问卷吗？"
+						},
+						_handler: function() {
+							that.deleteItem(event);
 						}					
 					});
 					//初始化，生成浮出层				
@@ -58,9 +66,8 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 
 			listCheckbox.push(G.Dom.$("list-" + (i + 1)));	
 		}
-
-		var listAll = G.Dom.$("list-all");
-		var clearAll = G.Dom.$("clearAll");
+		
+		//给全选按钮绑定事件
 		G.Eve.addEvent(listAll,"click",function() {
 			console.log(listAll.checked);					
 			if(listAll.checked == true) {
@@ -74,6 +81,7 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 			}															
 		});
 
+		//给删除选中项的删除按钮绑定事件
 		G.Eve.addEvent(clearAll,"click",function() {
 			console.log(listAll.checked);					
 			var itemChecked = listCheckbox.filter(function(item,index,arr) {					
@@ -84,8 +92,6 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 				return that.listBody.removeChild(item.parentNode.parentNode);
 			});														
 		});
-
-
 	}
 
 	QuesList.prototype = {
@@ -142,8 +148,10 @@ define(["../base/base","../floatDiv/common_floatDiv"], function(G,FloatLayer) {
 			this.root.appendChild(quesFooter);	
 		},
 
-		deleteItem: function() {
-
+		deleteItem: function(event) {
+			var e = window.event || event;
+			var target = e.target || e.srcElement;
+			this.listBody.removeChild(target.parentNode.parentNode);
 		},
 	}
 

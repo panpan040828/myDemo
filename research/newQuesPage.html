@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="css/newQuesPage/newQuesPage.css" />
+	</head>
+	<body>
+		<header>			
+			<nav>
+				<a class="nav-header" href="javascript:;">
+					<span class="icon-question-circle"></span>
+					<span>问卷管理</span>
+				</a>			
+				<a class="nav-item" href="javascript:;">我的问卷</a>
+				<div class="nav-right">
+					<a class="nav-logIn" href="javascript:;">登陆</a>
+					<a class="nav-register" href="javascript:;">注册</a>
+				</div>			
+			</nav>
+		</header>
+		<main>
+			<div id="newQues" class="newQues">
+				<div class="newQues-header" id="newQuesHeader">
+					<input type="text" value="第一份问卷" />
+				</div>
+				<div class="newQues-body">				
+				</div>
+				<div class="newQues-footer">
+					<div class="newQues-btns">
+						<div id="btnType" class="newQues-btnType" style="height: 0;">
+							<input type="button" value="单选" />
+							<input type="button" value="多选" />
+							<input type="button" value="文本框" />
+						</div>
+						<input id="addQuest" class="newQues-btnAdd" type="button" value="+ 添加问题" />
+					</div>
+					<div class="dateWrap" id="dateWrap">
+					</div>
+					<div class="floatRig">
+						<input type="button" value="保存问卷" />
+						<input type="button" value="发布问卷" />
+					</div>
+				</div>
+			</div>								
+		</main>
+		<div class="float-div" id="floatDiv" style="visibility:hidden;"></div>	
+		<footer>
+			Copyright@ 2016 yupan
+		</footer>
+		<script type="text/javascript" src="js/base/require.js" data-main="js/newQuesPage/main.js"></script>
+	</body>
+</html>

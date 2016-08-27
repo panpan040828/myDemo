@@ -1,4 +1,3 @@
-@import "https://github.com/panpan040828/myDemo/blob/gh-pages/questionNaire/css/base/_reset.css";
 .float-div {
   background: rgba(86, 83, 83, 0.5);
   width: 100%;
@@ -44,6 +43,7 @@
   border: 1px #C7B8B8 solid;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 5px;
   background: #f2986a;
   color: #fff;
   margin-right: 10px; }
@@ -67,6 +67,72 @@
   width: 10px;
   height: 10px;
   cursor: nw-resize; }
+
+.quesNaire {
+  background: #eee;
+  color: #7E7979; }
+
+.quesNaire-tr {
+  display: flex;
+  height: 50px; }
+
+.quesNaire-td1 {
+  flex: 1;
+  text-align: center; }
+
+.quesNaire-td2, .quesNaire-td5 {
+  flex: 4; }
+
+.quesNaire-td3 {
+  flex: 3; }
+
+.quesNaire-td4 {
+  flex: 2; }
+
+.quesNaire-body, .quesNaire-footer {
+  background: #fff; }
+
+.quesNaire-header, .quesNaire-body {
+  padding: 10px 15px; }
+
+.quesNaire-footer {
+  padding: 15px 15px; }
+
+[class*="quesNaire-body-item"] {
+  border-bottom: 1px #C7B8B8 solid; }
+  [class*="quesNaire-body-item"] .quesNaire-td3 {
+    font-size: 13px; }
+  [class*="quesNaire-body-item"] .quesNaire-td5 input {
+    padding: 3px 5px;
+    border: 1px #C7B8B8 solid;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    background: #fff; }
+  [class*="quesNaire-body-item"]:hover {
+    background-color: #F7DFCF; }
+
+[class*="quesNaire-td"] {
+  line-height: 50px; }
+
+#clearAll {
+  padding: 3px 5px;
+  border: 1px #C7B8B8 solid;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  background: #fff;
+  margin-left: 10px; }
+
+#createNew {
+  padding: 3px 5px;
+  border: 1px #C7B8B8 solid;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  background-color: #f2986a;
+  margin-left: 130px;
+  color: #fff; }
 
 @font-face {
   font-family: 'icomoon';
@@ -121,68 +187,51 @@ main {
   color: #7E7979;
   height: 100%; }
 
-.quesNaire-tr {
-  display: flex;
-  height: 50px; }
-
-.quesNaire-td1 {
-  flex: 1;
-  text-align: center; }
-
-.quesNaire-td2, .quesNaire-td5 {
-  flex: 4; }
-
-.quesNaire-td3 {
-  flex: 3; }
-
-.quesNaire-td4 {
-  flex: 2; }
-
-.quesNaire-body, .quesNaire-footer {
-  background: #fff; }
-
-.quesNaire-header, .quesNaire-body {
-  padding: 10px 15px; }
-
-.quesNaire-footer {
-  padding: 15px 15px; }
-
-[class*="quesNaire-body-item"] {
-  border-bottom: 1px #C7B8B8 solid; }
-  [class*="quesNaire-body-item"] .quesNaire-td3 {
-    font-size: 13px; }
-  [class*="quesNaire-body-item"] .quesNaire-td5 input {
-    padding: 3px 5px;
-    border: 1px #C7B8B8 solid;
-    border-radius: 5px;
-    cursor: pointer;
-    background: #fff; }
-  [class*="quesNaire-body-item"]:hover {
-    background-color: #F7DFCF; }
-
-[class*="quesNaire-td"] {
-  line-height: 50px; }
-
-#clearAll {
-  padding: 3px 5px;
-  border: 1px #C7B8B8 solid;
-  border-radius: 5px;
-  cursor: pointer;
-  background: #fff;
-  margin-left: 10px; }
-
-#createNew {
-  padding: 3px 5px;
-  border: 1px #C7B8B8 solid;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #f2986a;
-  margin-left: 120px;
-  color: #fff; }
-
 footer {
   text-align: center;
   font-size: 13px;
   color: #fff; }
+
+/*base.css*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+  font-family: Microsoft YaHei; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+fieldset, img {
+  border: 0; }
+
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal; }
+
+ol, ul {
+  list-style: none; }
+
+caption, th {
+  text-align: left; }
+
+q:before, q:after {
+  content: ""; }
+
+abbr, acronym {
+  border: 0; }
+
+a {
+  text-decoration: none; }
+
+div, a, p {
+  font-size: 15px; }
+
+body, html {
+  height: 100%; }
+
+/*html5*/
+main, article, aside, dialog, footer, header, section, footer, nav, footer, figure, menu {
+  display: block; }
 
 /*# sourceMappingURL=index.css.map */
